@@ -29,6 +29,8 @@ namespace AcmeOrder.Api.Services
 
             var order = new Order();
 
+            if (!await IsOrderFullfillable(model))
+                throw new Exception("Order quantity not valid");
 
             foreach (ProductLineItemViewModel productLineItem in model.ProductLineItems)
             {
@@ -46,11 +48,6 @@ namespace AcmeOrder.Api.Services
                 }
                 else
                 {
-                    //What happens with the order if requested quantity is not availbale depends on business 
-                    //For now just using 0 quanity 
-                    //We may inform user imeediately or we can expect it will be available later with reorder
-                    //Or we my inform during delivery. 
-                    //As there is no clear deatails in question. just doing this
                     productLineItem.Quantity = 0;  
                 }
 
@@ -66,6 +63,18 @@ namespace AcmeOrder.Api.Services
                       
             await _fileRepository.WirteToOrderFile(order);
 
+        }
+
+
+        private async Task<bool> IsOrderFullfillable(OrderViewModel model) {
+            foreach (ProductLineItemViewModel productLineItem in model.ProductLineItems)
+            {
+                var product = await _productRespository.GetProduct(productLineItem.ProductCode);
+                if (product.StockLevel < productLineItem.Quantity)
+                    return false;
+             }
+
+            return true;
         }
 
         private async Task ReorderProduct(Product product)
