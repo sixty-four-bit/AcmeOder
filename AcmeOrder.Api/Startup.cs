@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AcmeOrder.Api.Interfaces;
+using AcmeOrder.Api.Repository;
+using AcmeOrder.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace AcmeOrder
+namespace AcmeOrder.Api
 {
     public class Startup
     {
@@ -25,7 +28,17 @@ namespace AcmeOrder
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddTransient<IFileRepository, FileProcessor>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IReorderService, ReorderService>();
+
+
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

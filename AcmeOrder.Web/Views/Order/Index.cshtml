@@ -1,0 +1,95 @@
+﻿@model AcmeOrder.Web.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<div>
+    <h4>Order</h4>
+    @ViewData["errormessage"]
+    <hr />
+    @using (@Html.BeginForm("Index", "Order"))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    @Html.TextBoxFor(m => m.SearchProduct, new { Class = "form-control" })
+                </div>
+                <div class="col-sm-2 justify-content-sm-start">
+                    <input type="submit" name="formAction" value="Search Product" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+
+        <br />
+
+
+        <div class="container">
+            <div class="row" style="font-weight:bold;">
+                <div class="col col-sm-2">
+                    Product Code
+                </div>
+                <div class="col col-sm-4">
+                    Description
+                </div>
+                <div class="col col-sm-2">
+                    Price
+                </div>
+                <div class="col col-sm-2">
+                    Quantity
+                </div>
+                <div class="col col-sm-2">
+                    Item Total
+                </div>
+            </div>
+            @*<table>*@
+
+            @for (int i = 0; i < Model.ProductLineItems.Count(); i++)
+            {
+                <div class="row">
+                    <div class="col-sm-2">@Html.DisplayFor(m => m.ProductLineItems[i].ProductCode) @Html.HiddenFor(m => m.ProductLineItems[i].ProductCode)</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.ProductLineItems[i].Description)@Html.HiddenFor(m => m.ProductLineItems[i].Description)</div>
+                    <div class="col-sm-2">
+                        @Html.DisplayFor(m => m.ProductLineItems[i].UnitPrice)@Html.HiddenFor(m => m.ProductLineItems[i].UnitPrice, new { Class = "price  form-control" })
+                      
+                    </div>
+                    <div class="col-sm-2 ">
+
+                        @Html.TextBoxFor(m => m.ProductLineItems[i].Quantity, new { Class = "quantity form-control" , @type = "number" })
+
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.ProductLineItems[i].Total, new { Class = "total form-control", @readonly = "true" })
+                    </div>
+                   
+                </div>
+            }
+
+
+        </div>
+        <div class="row">
+            <div class="col col-sm-6">
+                <input type="submit" name="formAction" value="Submit Order" class="btn btn-primary" />
+                <INPUT TYPE="BUTTON" VALUE="Clear" ONCLICK="window.location.href='/Order'" class="btn btn-primary" >
+            </div>
+        </div>
+    }
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $('.quantity').on('change', function () {
+
+
+        $('.quantity').each(function () {
+            var $this = $(this);
+            var quantity = parseInt($this.val())||0
+            var rowPrice = $this.parent().siblings('div').children('.price').val()||0;
+            var subtotal = (quantity * rowPrice)||0;
+            $this.parent().siblings('div').children('.total').val(subtotal.toFixed(2));
+        })
+    })
+    $('.quantity').trigger('change')
+</script>

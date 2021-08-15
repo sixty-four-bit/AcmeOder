@@ -1,0 +1,4 @@
+ProductCode,Description,StockLevel,ReorderLevel,ReorderQuantity,OnOrder,IsReorder,UnitPrice
+AHC-123,8mm x 40mm SS Bolt,15,30,40,35,True,15
+AHC-456,8mm x 60mm SS Bolt,4119,500,5000,381,False,10
+AHC-789,8mm x 80mm SS Bolt,400,500,5000,5000,True,5

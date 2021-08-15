@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace AcmeOrder
+namespace AcmeOrder.Api
 {
     public class Program
     {

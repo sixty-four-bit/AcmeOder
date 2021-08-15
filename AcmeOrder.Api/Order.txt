@@ -1,0 +1,27 @@
+New Order ------------------------------
+AHC-456,8mm x 60mm SS Bolt, 10.0, 20, 200.0
+Order Total 200.0
+New Order ------------------------------
+AHC-456,8mm x 60mm SS Bolt, 10.0, 20, 200.0
+Order Total 200.0
+New Order ------------------------------
+AHC-456,8mm x 60mm SS Bolt, 10.0, 20, 200.0
+Order Total 200.0
+New Order ------------------------------
+AHC-123,8mm x 40mm SS Bolt, 15.0, 50, 750.0
+Order Total 750.0
+New Order ------------------------------
+AHC-123,8mm x 40mm SS Bolt, 15.0, 500, 7500.0
+Order Total 7500.0
+New Order ------------------------------
+AHC-123,8mm x 40mm SS Bolt, 15.0, 30, 450.0
+Order Total 450.0
+New Order ------------------------------
+AHC-123,8mm x 40mm SS Bolt, 15.0, 30, 450.0
+Order Total 450.0
+New Order ------------------------------
+AHC-123,8mm x 40mm SS Bolt, 15.0, 30, 450.0
+Order Total 450.0
+New Order ------------------------------
+AHC-123,8mm x 40mm SS Bolt, 15.0, 5, 75.0
+Order Total 75.0
